@@ -29,6 +29,7 @@ keystone.import('models');
 // Start Next app
 app.prepare()
 	.then(() => {
+		keystone.set('cloudinary config', process.env.CLOUDINARY_URL );
 
 		// Load your project's Routes
 		keystone.set('routes', require('./routes')(app));
