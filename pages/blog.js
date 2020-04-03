@@ -8,7 +8,7 @@ import { Container, CardDeck, Card } from 'react-bootstrap'
 class App extends Component {
 
   static async getInitialProps() {
-    let response = await axios.get('http://localhost:3000/api/posts');
+    let response = await axios.get(process.env.URL + '/api/posts');
     return { posts: response.data };
   }
 
