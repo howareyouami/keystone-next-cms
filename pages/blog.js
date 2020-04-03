@@ -1,7 +1,9 @@
 import { Component } from 'react';
 import axios from 'axios'
 import Header from '../components/Header'
-import { Container } from 'react-bootstrap'
+import BlogCard from '../components/BlogCard'
+
+import { Container, CardDeck, Card } from 'react-bootstrap'
 
 class App extends Component {
 
@@ -16,21 +18,17 @@ class App extends Component {
         <Header />
         <Container>
           <div className='content'>
-            {this.props.posts.map((post, i) => {
-              return (
-                <div className='post' key={i}>
-                  <div className='row'>
-                    <div className='col-12 col-md-4'>
-                      <img className='img-fluid' src={post.image.secure_url} />
-                    </div>
-                    <div className='col-12 col-md-8'>
-                      <h2>{post.title}</h2>
-                      <div dangerouslySetInnerHTML={{ __html: post.content.brief }}></div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
+            <CardDeck>
+              {this.props.posts.map((post, i) => {
+                return (
+                  <BlogCard
+                    imageUrl={post.image ? post.image.secure_url : "https://picsum.photos/200/300"}
+                    title={post.title}
+                    brief={post.content.brief}
+                  />
+                );
+              })}
+            </CardDeck>
           </div>
         </Container>
       </>
